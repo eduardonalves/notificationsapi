@@ -2,8 +2,10 @@
 A notification API - Spring Boot.
 
 Clone this repository.
+Configure database properties in application.properties
 
 Run create_batch_tables.sql script to create batch tables.
+
 
 This Application runs at http://localhost:8080/.
 
