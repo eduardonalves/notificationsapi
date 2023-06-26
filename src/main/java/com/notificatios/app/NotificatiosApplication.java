@@ -16,6 +16,7 @@ import com.notificatios.app.services.CategoryService;
 import com.notificatios.app.services.NotificationsTypeService;
 import com.notificatios.app.services.UserService;
 
+
 @SpringBootApplication
 @EnableBatchProcessing
 public class NotificatiosApplication implements CommandLineRunner  {

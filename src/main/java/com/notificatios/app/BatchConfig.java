@@ -86,6 +86,7 @@ public class BatchConfig {
     }
 
     @Bean
+    @StepScope
     public ItemProcessor<User, User> processor() {
     	
     	
