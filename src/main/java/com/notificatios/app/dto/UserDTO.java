@@ -8,7 +8,10 @@ import com.notificatios.app.models.Category;
 import com.notificatios.app.models.NotificationsType;
 import com.notificatios.app.models.User;
 
+
 import jakarta.validation.constraints.NotEmpty;
+
+
 
 public class UserDTO implements Serializable {
 
@@ -31,13 +34,21 @@ public class UserDTO implements Serializable {
     private List<Category> subscribed;
     
     private List<NotificationsType> channels;
-
+    
+    
 	public UserDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.phone = user.getPhone();
+		this.channels = user.getChannels();
+		this.subscribed = user.getSubscribed();
 	}
+	
+	public UserDTO() {
+		
+	}
+	
 	
 	public Long getId() {
 		return id;

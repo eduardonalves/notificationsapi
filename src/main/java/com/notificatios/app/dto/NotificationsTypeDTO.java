@@ -15,7 +15,7 @@ public class NotificationsTypeDTO implements Serializable {
 
 	private Long id;
 	 
-	 @NotEmpty(message="Required field.")
+	@NotEmpty(message="Required field.")
 	 private String type;
 
 	public NotificationsTypeDTO(NotificationsType  notificationsTyp) {

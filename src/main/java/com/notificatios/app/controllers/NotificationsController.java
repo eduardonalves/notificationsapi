@@ -7,7 +7,6 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,15 +20,11 @@ public class NotificationsController {
     JobLauncher jobLauncher;
 
     
-    
+	@Autowired
     private  Job notificationJob;
     
-    @Autowired
-    public NotificationsController( Job notificationJob) {
-        
-        this.notificationJob = notificationJob;
-    }
     
+   
     
     @PostMapping("/process")
     public ResponseEntity<String> processNotifications(@RequestParam("category_id") Long  category_id,

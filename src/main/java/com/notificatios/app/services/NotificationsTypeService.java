@@ -1,11 +1,17 @@
 package com.notificatios.app.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.notificatios.app.models.Category;
+import com.notificatios.app.dto.NotificationsTypeDTO;
+import com.notificatios.app.exceptions.ObjectNotFoundException;
 import com.notificatios.app.models.NotificationsType;
 import com.notificatios.app.repositories.NotificationsTypeRepository;
+
+import jakarta.validation.Valid;
 
 @Service
 public class NotificationsTypeService {
@@ -15,6 +21,16 @@ public class NotificationsTypeService {
 	public NotificationsType create(NotificationsType notificationsType) {
 		return notificationsTypeRepository.save(notificationsType);
 	}
+	
+	public List<NotificationsType> findAll() {		
+		return notificationsTypeRepository.findAll();
+	}
+	
+	public NotificationsType findById(Long id) {
+		Optional<NotificationsType> notificationsType =notificationsTypeRepository.findById(Math.toIntExact(id));
+		return notificationsType.orElseThrow( () -> new ObjectNotFoundException("NotificationsType not found: "+ id +" NotificationsType: " + NotificationsType.class.getName()));
+	}
+	
 	public NotificationsType createIfNotExist(NotificationsType notificationsType) {
 		
 		NotificationsType exitingNotificationsType= notificationsTypeRepository.findOneByType(notificationsType.getType());
@@ -25,5 +41,27 @@ public class NotificationsTypeService {
 			return exitingNotificationsType;
 		}
 	}
+	
+	public void updateNotificationsType(Long id, NotificationsType notificationsTypeUpdated) {
+		Optional<NotificationsType> optionalNotificationsType = notificationsTypeRepository.findById(Math.toIntExact(id));
+		NotificationsType notificationsType =optionalNotificationsType.orElseThrow( () -> new ObjectNotFoundException("NotificationsType not found: "+ id +" Category: " + NotificationsType.class.getName()));
+		notificationsType.setType(notificationsTypeUpdated.getType());
+		notificationsTypeRepository.save(notificationsType);
+		
+	}
+	
+	
+	public NotificationsType fromDTO(@Valid NotificationsTypeDTO notificationsTypeDTO) {
+		NotificationsType notificationsType = new NotificationsType(notificationsTypeDTO.getId(),notificationsTypeDTO.getType() );
+		return notificationsType;
+	}
+
+	public void deleteNotificationsType(Long id) {
+		Optional<NotificationsType> optionalCategory = notificationsTypeRepository.findById(Math.toIntExact(id));
+		NotificationsType notificationsType =optionalCategory.orElseThrow( () -> new ObjectNotFoundException("notificationsType not found: "+ id +" notificationsType: " + NotificationsType.class.getName()));
+		notificationsTypeRepository.delete(notificationsType);
+		
+	}
+	
 	
 }

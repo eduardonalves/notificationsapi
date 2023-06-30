@@ -77,7 +77,7 @@ public class BatchConfig {
     @StepScope
     public ItemReader<User> itemReader(@Value("#{jobParameters['category_id']}")Long category_id,@Value("#{jobParameters['message']}")String message) {
     	
-    	Category category = categoryService.findById(Math.toIntExact(category_id));
+    	Category category = categoryService.findById(category_id);
     	
     	List<User> users = userService.findAllBySubscribed(category);
     	

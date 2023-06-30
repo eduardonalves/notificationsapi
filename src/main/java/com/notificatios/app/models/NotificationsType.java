@@ -3,6 +3,7 @@ package com.notificatios.app.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,15 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "notificationstypes")
 public class NotificationsType implements Serializable {
 	
-	public NotificationsType() {
-		
-	}
-
-	public NotificationsType(Long id, String type) {
-		
-		this.id = id;
-		this.type = type;
-	}
+	
 
 	/**
 	 * 
@@ -31,8 +24,20 @@ public class NotificationsType implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+	
+	@Column(name = "type", nullable = false)
     private String type;
+	
+	
+	public NotificationsType() {
+		
+	}
+
+	public NotificationsType(Long id, String type) {
+		
+		this.id = id;
+		this.type = type;
+	}
 
 	public Long getId() {
 		return id;

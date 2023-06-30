@@ -40,12 +40,12 @@ public class UserItemProcessor implements ItemProcessor<User, User> {
     public User process(User item) throws Exception {
        
     	
-	  	System.out.println("processing 1");
-		List<Notification> list = new ArrayList<>();
+	  	System.out.println("processing...");
+		
 		List<NotificationsType> chanels = new ArrayList<>();
 		chanels = item.getChannels();
 		//@TODO GET category_id FROM JOB PARAMETER
-		Category category = categoryService.findById(Math.toIntExact(categoryIdParam));
+		Category category = categoryService.findById(categoryIdParam);
 		
 		
 		

@@ -32,6 +32,10 @@ public class NotificationDTO  implements Serializable{
 		this.notificationsTypeDTO = new NotificationsTypeDTO(notification.getNotificationsType());
 		this.userDTO = new UserDTO(notification.getUser());
 	}
+	
+	public NotificationDTO() {
+		
+	}
 
 	public Integer getId() {
 		return id;
