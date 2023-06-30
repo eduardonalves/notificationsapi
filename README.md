@@ -7,10 +7,11 @@ Configure database properties in application.properties
 Run create_batch_tables.sql script to create batch tables.
 
 
-This Application runs at http://localhost:8080/.
+This Application runs at http://localhost:8080/ .
 
-Notification Endpoint.
-http://localhost:8080/notifications/process?category_id=2&message=test .
+
+API Documentation.
+http://localhost:8080/swagger-ui/index.html .
 
 
 
