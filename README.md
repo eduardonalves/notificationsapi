@@ -5,13 +5,13 @@ A notification API - Spring Boot.
 Clone this repository.
 
 
-in the project directory     .
+In the project directory     .
 
 
-run docker-compose build     .
+Run docker-compose build     .
 
 
-run docker-compose up -d     .
+Run docker-compose up -d     .
 
 
 Access the database and run create_batch_tables.sql .
