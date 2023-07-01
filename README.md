@@ -2,19 +2,17 @@
 A notification API - Spring Boot.
 
 Clone this repository.
-Configure database properties in application.properties
 
-In the project directory     .
+On the project directory     .
 
 run docker-compose build     .
 
 run docker-compose up -d     .
 
-Open the database and run create_batch_tables.sql script to create batch tables.
+Access the database and run create_batch_tables.sql .
 
-
-This Application runs at http://localhost:8080/ .
-
+Accessing application:  http://localhost:8080/.
+Acessing database:  http://localhost:3306/.
 
 API Documentation.
 http://localhost:8080/swagger-ui/index.html .
