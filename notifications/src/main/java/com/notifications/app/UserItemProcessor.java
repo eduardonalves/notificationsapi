@@ -31,7 +31,6 @@ public class UserItemProcessor implements ItemProcessor<User, User> {
 	private Long categoryIdParam;
 	
 	@Autowired
-	
 	private CategoryService categoryService;
 	
 	@Autowired
@@ -41,7 +40,7 @@ public class UserItemProcessor implements ItemProcessor<User, User> {
        
     	
 	  	System.out.println("processing...");
-		
+	  	
 		List<NotificationsType> chanels = new ArrayList<>();
 		chanels = item.getChannels();
 		//@TODO GET category_id FROM JOB PARAMETER
