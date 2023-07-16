@@ -1,27 +1,31 @@
 package com.notifications.app.controllers;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersBuilder;
+
+
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
+import com.notifications.app.dto.GenerateNotificationsRequestDTO;
+
 import com.notifications.app.exceptions.ObjectNotFoundException;
-import com.notifications.app.models.Category;
+
 import com.notifications.app.services.CategoryService;
 import com.notifications.app.services.NotificationJobSevice;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
+
 
 @Validated
 @RestController
@@ -46,14 +50,12 @@ public class NotificationsController {
     
    
     
-    @GetMapping("/generate-notifications")
-    public ResponseEntity<String> processNotifications(@Valid @NotNull(message="Field category_id is required.") @RequestParam("category_id") Long  category_id,
-    		@Valid @NotBlank(message="Field message is required.")  @RequestParam("message") String message) throws ObjectNotFoundException {
-    	Category category = categoryService.findById(category_id);
-    	
+	@PostMapping("/generate-notifications")
+    public ResponseEntity<String> processNotifications(@Valid @RequestBody GenerateNotificationsRequestDTO generateNotificationsRequestDTO) throws MethodArgumentNotValidException {
+    
     	
     	try {
-    		notificationJobSevice.runUsersSetup(category_id,message);
+    		notificationJobSevice.runUsersSetup(generateNotificationsRequestDTO.getCategoryId(),generateNotificationsRequestDTO.getMessage());
             return ResponseEntity.ok("Success.");
         } catch (Exception e) {
         	System.out.println(e.getMessage());
